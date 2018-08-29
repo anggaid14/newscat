@@ -10,15 +10,15 @@ function cat($code, $key, $token, $jumlah, $wait){
 		$body = 'sgbcode='.$code.'&sgbsecret='.$key.'&token='.$token.'';
 				
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://api-siptruk.c9users.io/api.php");
+        curl_setopt($ch, CURLOPT_URL,"http://anggaid.000webhostapp.com/api.php");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Host: api-siptruk.c9users.io","User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36","Cookie: c9.live.user.jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg1MTMyMiIsIm5hbWUiOiJzaXB0cnVrIiwiY29kZSI6IjljNjRkdEdZM29xaXlhazZqTUtCIiwiaWF0IjoxNTM1NDQzNTY5LCJleHAiOjE1MzU1Mjk5Njl9.7hxrgMrZeL8ix0p7tbwolatbDJ9MVCSxuB1ZZQhgd48; c9.live.user.sso=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg1MTMyMiIsIm5hbWUiOiJzaXB0cnVrIiwiaWF0IjoxNTM1NDQzNTY5LCJleHAiOjE1MzU1Mjk5Njl9.lG-DHtT9G_CtN0dGLyEn7Jt7BvyQUpz88mxIno0rDTc; XDEBUG_SESSION=cloud9ide"));
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array("User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"));
         $server_output = curl_exec ($ch);
         curl_close ($ch);
-		echo $server_output."\n";
+	echo $server_output."\n";
         sleep($wait);
         $x++;
         flush();
