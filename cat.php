@@ -3,41 +3,49 @@
 // Not For Sale 
 // THX TO SGB TEAM
 
-function cat($code, $key, $token, $jumlah, $wait){
-    $x = 0; 
-    while($x < $jumlah) {
+function cat($token, $jumlah, $wait){
+		$rand = rand(1111,99999);
 		
-		$body = 'sgbcode='.$code.'&sgbsecret='.$key.'&token='.$token.'';
-				
+		$body = '--KONTOL
+Content-Disposition: form-data; name="aid"
+Content-Length: 6
+
+'.$rand.'
+--KONTOL
+Content-Disposition: form-data; name="token"
+Content-Length: 32
+
+'.$token.'
+--KONTOL
+Content-Disposition: form-data; name="sign"
+Content-Length: 32
+
+AB10AA52B0E431D9091087795DBF6638
+--KONTOL--';
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"http://anggaid.000webhostapp.com/api.php");
+        curl_setopt($ch, CURLOPT_URL,"http://www.newscat.com/api/article/award");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"));
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: multipart/form-data; boundary=KONTOL"));
         $server_output = curl_exec ($ch);
         curl_close ($ch);
-	echo $server_output."\n";
+		echo $server_output."\n";
         sleep($wait);
         $x++;
         flush();
     }
-}
 
 print "TUYUL COIN NEWS CAT\n\n";
 
-echo "SGB CODE?\nInput : ";
-$code = trim(fgets(STDIN));
-echo "SGB SECRET KEY?\nInput : ";
-$key = trim(fgets(STDIN));
 echo "TOKEN?\nInput : ";
 $token = trim(fgets(STDIN));
 echo "Jumlah?\nInput : ";
 $jumlah = trim(fgets(STDIN));
 echo "Jeda? 0-9999999999 (ex:0)\nInput : ";
 $wait = trim(fgets(STDIN));
-$execute = cat($code, $key, $token, $jumlah, $wait);
+$execute = cat($token, $jumlah, $wait);
 print $execute;
 print "DONE ALL SEND\n";
 ?>
