@@ -4,6 +4,8 @@
 // THX TO SGB TEAM
 
 function cat($token, $jumlah, $wait){
+	$x = 0; 
+    while($x < $jumlah) {
 		$rand = rand(1111,99999);
 		
 		$body = '--KONTOL
@@ -36,6 +38,7 @@ AB10AA52B0E431D9091087795DBF6638
         $x++;
         flush();
     }
+}
 
 print "TUYUL COIN NEWS CAT\n\n";
 
